@@ -1,1 +1,14 @@
+- hosts: apache
+  become: yes
+  tasks:
+    - copy:
+        src: index.html
+        dest: /var/www/html/index.html
+
+- hosts: nginx
+  become: yes
+  tasks:
+    - copy:
+        src: index.html
+        dest: /usr/share/nginx/html/index.html
 
