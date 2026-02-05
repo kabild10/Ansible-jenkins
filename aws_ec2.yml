@@ -1,1 +1,18 @@
+plugin: aws_ec2
+regions:
+  - ap-south-1
+
+filters:
+  tag:Name: web-*
+
+keyed_groups:
+  - key: tags.Name
+    prefix: tag
+
+groups:
+  apache: "'web-0' in tags.Name or 'web-1' in tags.Name"
+  nginx: "'web-2' in tags.Name or 'web-3' in tags.Name"
+
+compose:
+  ansible_host: public_ip_address
 
